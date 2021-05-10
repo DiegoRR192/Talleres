@@ -7,7 +7,6 @@ package nativo;
 
 import java.applet.Applet;
 import java.awt.*;
-import java.io.FileReader;
 import javax.swing.*;
 
 /*import javax.swing.BorderFactory;
@@ -27,7 +26,7 @@ public class BurbujaVSBurbujaMejorado extends Applet {
 
     @Override
     public void init() {
-        setSize(1000, 600);
+        setSize(1200, 760);
         datosJT = new JTextField();
         Object[] muestra = {"Datos", datosJT};
         int panel = JOptionPane.showConfirmDialog(null, muestra, "Ingrese la cantidad de datos para ejecucion", JOptionPane.OK_CANCEL_OPTION);
@@ -64,37 +63,35 @@ public class BurbujaVSBurbujaMejorado extends Applet {
         LecturaArchivo leer = new LecturaArchivo();
         Retorno datostiempos1 = leer.leerArchivo("BurbujaNormal.txt");
 
+        //Grafica puntos
         long tiempo1[] = datosTiempos.getTiempos();
         int datos1[] = datostiempos1.getDatos();
 
-        int maxX = numeroDatos/14;
-        double porcenX = (46 / (maxX*1.0));
-        
-               
-        System.out.println(tiempo1[(tiempo1.length)-2]);
-        long maxY = (tiempo1[numeroDatos-2])/14;
-        double porcenY = (28 / (maxY*1.0));
-        System.out.println("porcey"+porcenY);
-        System.out.println("porcex"+porcenX);
-        int divide=numeroDatos/650;
-        int tiempofin[]=new int [650];
-        long acu=0;
+        int maxX = numeroDatos / 14;
+        double porcenX = (46 / (maxX * 1.0));
+
+        System.out.println(tiempo1[(tiempo1.length) - 2]);
+        long maxY = (tiempo1[numeroDatos - 2]) / 14;
+        double porcenY = (28 / (maxY * 1.0));
+        System.out.println("porcey" + porcenY);
+        System.out.println("porcex" + porcenX);
+        int divide = numeroDatos / 650;
+        int tiempofin[] = new int[650];
+        long acu = 0;
         int cambio = (650);
-        int p=0;
+        int p = 0;
         for (int i = 0; i < tiempo1.length; i++) {
-            acu=tiempo1[i]+acu;
-            if(i>=cambio){
-                cambio=cambio+(650);
-                tiempofin[p]=(int)acu/divide;
+            acu = tiempo1[i] + acu;
+            if (i >= cambio) {
+                cambio = cambio + (650);
+                tiempofin[p] = (int) acu / divide;
                 p++;
-                acu=0;
+                acu = 0;
             }
         }
-        
-        
 
-        for (int i = 0,j=500; i <= 650; i++) {
-            g.drawOval(((int)(i*porcenX))+200, j-((int)(tiempofin[i]*porcenY)), 5, 5);
+        for (int i = 0, j = 500; i <= 650; i++) {
+            g.drawOval(((int) (i * porcenX)) + 200, j - ((int) (tiempofin[i] * porcenY)), 5, 5);
         }
 
         //Acomodar titulos del numero de datos en el eje Y
@@ -107,7 +104,6 @@ public class BurbujaVSBurbujaMejorado extends Applet {
         getAppletContext().showStatus("Grafica lista.");
     }
     
-
 
     public Retorno ejecucionBurbuja() {
         // Variables
