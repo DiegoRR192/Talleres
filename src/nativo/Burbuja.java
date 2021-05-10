@@ -21,7 +21,7 @@ public class Burbuja {
         int i, j, aux;
         long listaTiempos[] = new long[vecb.length];
         Retorno respuesta;
-        ini = System.nanoTime();
+        ini = System.nanoTime()/1000;
         for (i = 0; i < (vecb.length - 1); i++) {
             for (j = 0; j < (vecb.length - 1); j++) {
                 if (vecb[j] > vecb[j + 1]) {
@@ -30,7 +30,7 @@ public class Burbuja {
                     vecb[j + 1] = aux;
                 }
             }
-            fin = System.nanoTime()- ini;
+            fin = (System.nanoTime()- ini)/1000;
             listaTiempos[i] = fin;
         }
         respuesta = new Retorno(vecb, listaTiempos);
