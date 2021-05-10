@@ -17,6 +17,8 @@ public class LecturaArchivo {
     BufferedReader br = null;
 
     public Retorno leerArchivo(String nombreDocumento) {
+        int[] datos = null;
+        long[] tiempos= null;
         try {
             fr = new FileReader(nombreDocumento);
             br = new BufferedReader(fr);
@@ -27,8 +29,8 @@ public class LecturaArchivo {
             while ((linea = br.readLine()) != null) {
                 cont++;
             }
-            int[] datos = new int[cont];
-            long[] tiempos = new long[cont];
+            datos = new int[cont];
+            tiempos = new long[cont];
             cont=0;
             while ((linea = br.readLine()) != null) {
                 String informacion[] = br.readLine().split("/");
