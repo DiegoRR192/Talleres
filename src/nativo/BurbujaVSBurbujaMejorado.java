@@ -55,7 +55,7 @@ public class BurbujaVSBurbujaMejorado extends Applet {
 
         //Grafica metodo burbuja  x=650  y=400
         getAppletContext().showStatus("Graficando...");
-        datosTiempos = ejecucionBurbuja();
+        datosTiempos = ejecucionCouting();
         g.setColor(Color.RED);
         int k = numeroDatos / 650;
         //System.out.println(k);
@@ -105,10 +105,10 @@ public class BurbujaVSBurbujaMejorado extends Applet {
     }
     
 
-    public Retorno ejecucionBurbuja() {
+   public Retorno ejecucionCouting() {
         // Variables
         Retorno informacion = new Retorno();
-        Burbuja burbuja = new Burbuja();
+        CoutingSort couting = new CoutingSort();
         escrituraArchivo escribo = new escrituraArchivo();
 
         //llenar datosJT
@@ -116,7 +116,7 @@ public class BurbujaVSBurbujaMejorado extends Applet {
         getAppletContext().showStatus("Datos creados");
 
         // organizar los datosJT anteriores
-        informacion = burbuja.BurbujaClasica(datos);
+        informacion = couting.countingSort(datos);
         getAppletContext().showStatus("Datos ordenados");
 
         //Escribir datosJT en archivo

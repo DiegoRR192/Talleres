@@ -6,8 +6,8 @@
 package modelo;
 
 import java.util.ArrayList;
-import nativo.Burbuja;
-import nativo.BurbujaMejorado;
+import nativo.CoutingSort;
+import nativo.QuickSort;
 import nativo.Retorno;
 import nativo.escrituraArchivo;
 
@@ -18,7 +18,7 @@ import nativo.escrituraArchivo;
 public class NewClass {
 
     public static void main(String[] args) {
-        nativo.BurbujaMejorado bur = new BurbujaMejorado();
+        nativo.QuickSort bur = new QuickSort();
         nativo.escrituraArchivo escribo = new escrituraArchivo();
         int datos[] = new int[50000];
         Retorno datosTiempos;
