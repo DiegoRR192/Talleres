@@ -46,9 +46,14 @@ public class BurbujaVSBurbujaMejorado_1 extends Applet {
         for (int i = 1, j = 850; i <= 14; i++, j = j - 50) {
             g.drawString(numeroDatos / i + "", j, 520);
         }
-
-     
-        datosTiempos = ejecucionBurbuja();
+        
+        // couting sourt - graficando
+        datosTiempos = ejecucionCouting();
+        dibujaFuncion1(datosTiempos.getDatos(), datosTiempos.getTiempos());
+        
+        //quicksort - graficando
+        datosTiempos = ejecucionQuick();
+        dibujaFuncion1(datosTiempos.getDatos(), datosTiempos.getTiempos());
         
         //Acomodar titulos del numero de datos en el eje Y
         g.setColor(Color.BLACK);
@@ -66,8 +71,9 @@ public class BurbujaVSBurbujaMejorado_1 extends Applet {
         //dibujaEjes(g, datos);
         Graphics g1 = getGraphics();
         g1.setColor(Color.RED);
-        //long escalaTamanopulso = 1000000;
-        int escalaTamanopulso = ((int) vTiempo1[vTiempo1.length - 2])/4;
+
+        long escalaTamanopulso = 1000000;
+        // int escalaTamanopulso = (int) vTiempo1[vTiempo1.length - 3];
         double escalaX = 1;
         double escalaY = 1;
         for (int i = 0; i < vPrincipal1.length - 1; i++) {
@@ -75,28 +81,24 @@ public class BurbujaVSBurbujaMejorado_1 extends Applet {
             } else {
                 double xinicial = 200 + vPrincipal1[i] * escalaX;
                 double xfinal = 200 + vPrincipal1[i + 1] * escalaX;
-        //        double yinicial = 500 - vTiempo1[i] * escalaY;
-        //        double yfinal = 500 - vTiempo1[i + 1] * escalaY;
-                long yinicial = (( vTiempo1[i] / escalaTamanopulso) /** -1*/) + (500 - (i / 4));
-                long yfinal = (( vTiempo1[i + 1] / escalaTamanopulso) /** -1*/) + (500 - (i / 4));
-                //g1.drawOval((int) xinicial,(int) yinicial, 0, 0);
-                //g1.drawOval((int) xfinal,(int) yfinal, 0, 0);
-                if(i==4000){
-                    System.out.println("9000");
-                }
-                g1.drawLine((int) xinicial,(int) yinicial,(int) xfinal,(int) yfinal);        // drawOval(x,y,ancho,alto)
+                //        double yinicial = 500 - vTiempo1[i] * escalaY;
+                //        double yfinal = 500 - vTiempo1[i + 1] * escalaY;
+                long yinicial = ((vTiempo1[i] / escalaTamanopulso) * -1) + (500 - (i / 4));
+                long yfinal = ((vTiempo1[i + 1] / escalaTamanopulso) * -1) + (500 - (i / 4));
+                g1.drawOval((int) xinicial, (int) yinicial, 0, 0);
+                g1.drawOval((int) xfinal, (int) yfinal, 0, 0);
+                //  g1.drawLine((int) xinicial,(int) yinicial,(int) xfinal,(int) yfinal);        // drawOval(x,y,ancho,alto)
             }
         }
         Graphics g2 = getGraphics();
         g1.setColor(Color.RED);
-    
-    }
-      
 
-    public Retorno ejecucionBurbuja() {
+    }
+
+    public Retorno ejecucionCouting() {
         // Variables
         Retorno informacion = new Retorno();
-        Burbuja burbuja = new Burbuja();
+        CoutingSort couting = new CoutingSort();
         escrituraArchivo escribo = new escrituraArchivo();
 
         //llenar datosJT
@@ -104,26 +106,34 @@ public class BurbujaVSBurbujaMejorado_1 extends Applet {
         getAppletContext().showStatus("Datos creados");
 
         // organizar los datosJT anteriores
-        informacion = burbuja.BurbujaClasica(datos);
+        informacion = couting.countingSort(datos);
         getAppletContext().showStatus("Datos ordenados");
 
         //Escribir datosJT en archivo
-        escribo.escribirArchivo(informacion.getTiempos(), informacion.getDatos(), "BurbujaNormal");
+        escribo.escribirArchivo(informacion.getTiempos(), informacion.getDatos(), "CoutingSort");
         getAppletContext().showStatus("Datos en documento .txt");
 
         return informacion;
     }
 
-    public int[] organizarSegundos(long[] tiempos) {
+    public Retorno ejecucionQuick() {
+        // Variables
+        Retorno informacion = new Retorno();
+        QuickSort quick = new QuickSort();
+        escrituraArchivo escribo = new escrituraArchivo();
 
-        int[] resultado = new int[tiempos.length];
+        //llenar datosJT
+        datos = informacion.rellenarDatos(numeroDatos);
+        getAppletContext().showStatus("Datos creados");
 
-        for (int i = 1; i < tiempos.length; i++) {
-            if (tiempos[i] != tiempos[i - 1]) {
-                resultado[i] = (int) tiempos[i];
-                System.out.println("- " + tiempos[i]);
-            }
-        }
-        return resultado;
+        // organizar los datosJT anteriores
+        informacion = quick.quicksort(datos, 0, datos.length - 1);
+        getAppletContext().showStatus("Datos ordenados");
+
+        //Escribir datosJT en archivo
+        escribo.escribirArchivo(informacion.getTiempos(), informacion.getDatos(), "QuickSort");
+        getAppletContext().showStatus("Datos en documento .txt");
+
+        return informacion;
     }
 }
