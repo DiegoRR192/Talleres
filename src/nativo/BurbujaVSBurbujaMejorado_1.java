@@ -53,11 +53,15 @@ public class BurbujaVSBurbujaMejorado_1 extends Applet {
         for (int i = 1, j = 850; i <= 14; i++, j = j - 50) {
             g.drawString(numeroDatos / i + "", j, 520);
         }
-
+        
+        // couting sourt - graficando
         datosTiempos = ejecucionCouting();
-
         dibujaFuncion1(datosTiempos.getDatos(), datosTiempos.getTiempos());
-
+        
+        //quicksort - graficando
+        datosTiempos = ejecucionQuick();
+        dibujaFuncion1(datosTiempos.getDatos(), datosTiempos.getTiempos());
+        
         //Acomodar titulos del numero de datos en el eje Y
         g.setColor(Color.BLACK);
         g.setFont(new Font("Tahoma", Font.BOLD, 10));
@@ -112,7 +116,7 @@ public class BurbujaVSBurbujaMejorado_1 extends Applet {
         getAppletContext().showStatus("Datos ordenados");
 
         //Escribir datosJT en archivo
-        escribo.escribirArchivo(informacion.getTiempos(), informacion.getDatos(), "BurbujaNormal");
+        escribo.escribirArchivo(informacion.getTiempos(), informacion.getDatos(), "CoutingSort");
         getAppletContext().showStatus("Datos en documento .txt");
 
         return informacion;
@@ -133,7 +137,7 @@ public class BurbujaVSBurbujaMejorado_1 extends Applet {
         getAppletContext().showStatus("Datos ordenados");
 
         //Escribir datosJT en archivo
-        escribo.escribirArchivo(informacion.getTiempos(), informacion.getDatos(), "BurbujaNormal");
+        escribo.escribirArchivo(informacion.getTiempos(), informacion.getDatos(), "QuickSort");
         getAppletContext().showStatus("Datos en documento .txt");
 
         return informacion;

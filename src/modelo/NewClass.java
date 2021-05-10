@@ -18,34 +18,41 @@ import nativo.escrituraArchivo;
 public class NewClass {
 
     public static void main(String[] args) {
-        nativo.QuickSort bur = new QuickSort();
+        nativo.QuickSort quick = new QuickSort();
+        nativo.CoutingSort couting = new CoutingSort();
         nativo.escrituraArchivo escribo = new escrituraArchivo();
         int datos[] = new int[50000];
         Retorno datosTiempos;
-        
+
         for (int i = 0; i < 50000; i++) {
-        int x = (int) (Math.random() * 299 + 1);
-        datos[i] = x;
+            int x = (int) (Math.random() * 299 + 1);
+            datos[i] = x;
         }
         System.out.println("Datos llenos");
+
+        /*datosTiempos = quick.quicksort(datos, 0, datos.length - 1);
+
+        for (int i = 0; i < datosTiempos.getDatos().length; i++) {
+            System.out.println(datosTiempos.getDatos()[i] + " - " + datosTiempos.getTiempos()[i]);
+        }*/
         
-        datosTiempos = bur.BurbujaMejorado(datos);
+        datosTiempos = couting.countingSort(datos);
         
-       // for (int i = 0; i < datosTiempos.getTiempos().length; i++) {
-        //System.out.println(datosTiempos.getDatos()[i]);
-       // }
+        for (int i = 0; i < datosTiempos.getDatos().length; i++) {
+            System.out.println(datosTiempos.getDatos()[i] + " - " + datosTiempos.getTiempos()[i]);
+        }
         
-        System.out.println(datosTiempos.getTiempos().length);
-        escribo.escribirArchivo(datosTiempos.getTiempos(), datosTiempos.getDatos(),"prueba");
-        
+        /*        System.out.println(datosTiempos.getTiempos().length);
+        escribo.escribirArchivo(datosTiempos.getTiempos(), datosTiempos.getDatos(), "pruebaCouting");
+
         ArrayList resultado = new ArrayList(datosTiempos.getTiempos().length);
 
         for (int i = 1; i < datosTiempos.getTiempos().length; i++) {
             if (datosTiempos.getTiempos()[i] != datosTiempos.getTiempos()[i - 1]) {
                 resultado.add(datosTiempos.getTiempos()[i]);
-                System.out.println("- "+ datosTiempos.getTiempos()[i]);
+                System.out.println("- " + datosTiempos.getTiempos()[i]);
             }
         }
         System.out.println("tamaño " + resultado.size());
-    }
+         */    }
 }
