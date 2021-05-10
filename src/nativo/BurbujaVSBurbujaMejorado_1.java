@@ -1,13 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package nativo;
-
 import java.applet.Applet;
 import java.awt.*;
-
 import javax.swing.*;
 
 /*import javax.swing.BorderFactory;
@@ -57,9 +50,6 @@ public class BurbujaVSBurbujaMejorado_1 extends Applet {
      
         datosTiempos = ejecucionBurbuja();
         
-        dibujaFuncion1(datosTiempos.getDatos(), datosTiempos.getTiempos());
-        
-        
         //Acomodar titulos del numero de datos en el eje Y
         g.setColor(Color.BLACK);
         g.setFont(new Font("Tahoma", Font.BOLD, 10));
@@ -68,6 +58,7 @@ public class BurbujaVSBurbujaMejorado_1 extends Applet {
             g.drawString(ultimoDato / i + "", 150, j);
         }
         getAppletContext().showStatus("Grafica lista.");
+        dibujaFuncion1(datosTiempos.getDatos(), datosTiempos.getTiempos());
     }
 
     public void dibujaFuncion1(int[] vPrincipal1, long[] vTiempo1) {
@@ -75,8 +66,8 @@ public class BurbujaVSBurbujaMejorado_1 extends Applet {
         //dibujaEjes(g, datos);
         Graphics g1 = getGraphics();
         g1.setColor(Color.RED);
-        long escalaTamanopulso = 1000000;
-       // int escalaTamanopulso = (int) vTiempo1[vTiempo1.length - 3];
+        //long escalaTamanopulso = 1000000;
+        int escalaTamanopulso = ((int) vTiempo1[vTiempo1.length - 2])/4;
         double escalaX = 1;
         double escalaY = 1;
         for (int i = 0; i < vPrincipal1.length - 1; i++) {
@@ -86,12 +77,14 @@ public class BurbujaVSBurbujaMejorado_1 extends Applet {
                 double xfinal = 200 + vPrincipal1[i + 1] * escalaX;
         //        double yinicial = 500 - vTiempo1[i] * escalaY;
         //        double yfinal = 500 - vTiempo1[i + 1] * escalaY;
-               
-                long yinicial = (( vTiempo1[i] / escalaTamanopulso) * -1) + (500 - (i / 4));
-                long yfinal = (( vTiempo1[i + 1] / escalaTamanopulso) * -1) + (500 - (i / 4));
-                g1.drawOval((int) xinicial,(int) yinicial, 0, 0);
-                g1.drawOval((int) xfinal,(int) yfinal, 0, 0);
-              //  g1.drawLine((int) xinicial,(int) yinicial,(int) xfinal,(int) yfinal);        // drawOval(x,y,ancho,alto)
+                long yinicial = (( vTiempo1[i] / escalaTamanopulso) /** -1*/) + (500 - (i / 4));
+                long yfinal = (( vTiempo1[i + 1] / escalaTamanopulso) /** -1*/) + (500 - (i / 4));
+                //g1.drawOval((int) xinicial,(int) yinicial, 0, 0);
+                //g1.drawOval((int) xfinal,(int) yfinal, 0, 0);
+                if(i==4000){
+                    System.out.println("9000");
+                }
+                g1.drawLine((int) xinicial,(int) yinicial,(int) xfinal,(int) yfinal);        // drawOval(x,y,ancho,alto)
             }
         }
         Graphics g2 = getGraphics();
