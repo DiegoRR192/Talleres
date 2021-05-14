@@ -55,12 +55,12 @@ public class CoutingSort {
 
         // Copy the sorted elements into original array
         for (int i = 0; i < size; i++) {
+            array[i] = output[i];
             fin = (System.nanoTime() - ini);
             listaTiempos[i] = fin;
-            array[i] = output[i];
         }
         respuesta = new Retorno(array, listaTiempos);
         return respuesta;
     }
-    
+
 }

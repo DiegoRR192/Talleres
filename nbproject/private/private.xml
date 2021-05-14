@@ -3,7 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/C:/Users/CARITO/Desktop/ANDRES/Universidad%20Andres/7mo%20Semestre/Anlasis%20algoritmos/Ordenamento%20Sourting/src/modelo/NewClass.java</file>
+            <file>file:/C:/Users/CARITO/Desktop/ANDRES/Universidad%20Andres/7mo%20Semestre/Anlasis%20algoritmos/Ordenamento%20Sourting/src/nativo/CoutingSort.java</file>
+            <file>file:/C:/Users/CARITO/Desktop/ANDRES/Universidad%20Andres/7mo%20Semestre/Anlasis%20algoritmos/Ordenamento%20Sourting/src/nativo/BurbujaVSBurbujaMejorado_1.java</file>
+=======
             <file>file:/D:/pruebagit/src/nativo/QuickvrsCouting_1.java</file>
+>>>>>>> origin/feature/graphics
         </group>
     </open-files>
 </project-private>

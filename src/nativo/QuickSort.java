@@ -5,6 +5,8 @@
  */
 package nativo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author CARITO
@@ -14,11 +16,27 @@ public class QuickSort {
     public QuickSort() {
     }
 
+    Retorno resutado = new Retorno();
+    private long tiempos[];
+
+    public long[] getTiempos() {
+        return tiempos;
+    }
+
+    public void setTiempos(long[] tiempos) {
+        this.tiempos = tiempos;
+    }
+
+    public void asignarTamnio(int arreglo) {
+        tiempos = new long[arreglo];
+    }
+    int cont = 0;
+
     public Retorno quicksort(int arreglo[], int primero, int ultimo) {
-        int central, i, j, pivote, cont=0;
+        int central, i, j, pivote;
         long ini, fin = 0;
-        long listaTiempos[] = new long[arreglo.length];
-        ini = System.currentTimeMillis();
+        ArrayList listaTiempos = new ArrayList(arreglo.length);
+        ini = System.nanoTime();
         central = (primero + ultimo) / 2;
         pivote = arreglo[central];
         i = primero;
@@ -38,11 +56,11 @@ public class QuickSort {
                 arreglo[j] = temp;
                 i++;
                 j--;
-                fin = System.currentTimeMillis() - ini;
-                listaTiempos[cont] = fin;
-                cont++;
+                fin = System.nanoTime()- ini;
+                this.tiempos[i] = fin;
             }
         } while (i <= j);
+
         if (primero < j) {
             quicksort(arreglo, primero, j);
             /*mismo proceso con sublista izquierda*/
@@ -51,8 +69,8 @@ public class QuickSort {
             quicksort(arreglo, i, ultimo);
             /*mismo proceso con sublista derecha*/
         }
-        Retorno resutado = new Retorno(arreglo, listaTiempos);
-        return resutado;
+
+        return resutado = new Retorno(arreglo, tiempos);
     }
 
 }
