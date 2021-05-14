@@ -5,14 +5,6 @@ import java.awt.*;
 import java.text.DecimalFormat;
 import javax.swing.*;
 
-/*import javax.swing.BorderFactory;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
-import java.awt.*;
-/**
- *
- * @author CARITO
- */
 public class QuickvrsCouting_1 extends Applet {
 
     int numeroDatos;
@@ -53,23 +45,13 @@ public class QuickvrsCouting_1 extends Applet {
         //quicksort - graficando
         //datosTiempos = ejecucionQuick();
         //dibujaFuncion1(datosTiempos.getDatos(), datosTiempos.getTiempos());
+        
         //Acomodar titulos del numero de datos en el eje Y
         g.setColor(Color.BLACK);
         g.setFont(new Font("Tahoma", Font.BOLD, 10));
         long ultimoDato = datosTiempos.getTiempos()[numeroDatos - 2];
-        /*for (int i = 1, j = 100; i <= 10; i++, j = j + 42) {
-            g.drawString(ultimoDato / i + "", 90, j);
-        }*/
-
-        int divi = (int) (ultimoDato / 10);
-        for (int i = 0, j = 1; i < datosTiempos.getTiempos().length; i++, j++) {
-            //if ((datosTiempos.getTiempos()[i] % divi) == 0) {
-
-            //}
-        }
 
         getAppletContext().showStatus("Grafica lista.");
-
         dibujaFuncion1(datosTiempos.getDatos(), datosTiempos.getTiempos());
     }
 
@@ -78,35 +60,27 @@ public class QuickvrsCouting_1 extends Applet {
     }
 
     public void dibujaFuncion1(int[] vPrincipal1, long[] vTiempo1) {
-        Graphics g = getGraphics();
-        //dibujaEjes(g, datos);
         Graphics g1 = getGraphics();
         g1.setColor(Color.RED);
 
         int tam = vPrincipal1.length;
         int timeMax = (int) vTiempo1[tam - 1];
-        DecimalFormat formato = new DecimalFormat("#.000");
+
         double escalaX = (double) 700 / tam;
         double escalaY = (double) 500 / timeMax;
-        //g.drawString("aquí", 200, 500);
         int salto = vTiempo1.length / 5;
         for (int i = 0; i < vPrincipal1.length - 1; i++) {
             if (vTiempo1[i] == 0) {
             } else {
                 double xinicial = 200 + (i * escalaX);
-                double xfinal = 200 + ((i + 1) * escalaX);
-                double yinicial = 600 - (vTiempo1[i] * escalaY);
-                double yfinal = 500 - (vTiempo1[i + 1] * escalaY);
-                //long yinicial = (((int) vTiempo1[i] / escalaTamanopulso) * -1) + (500 - (i / 4));
-                //long yfinal = (((int) vTiempo1[i + 1] / escalaTamanopulso) * -1) + (500 - (i / 4));
-                //g1.drawLine((int) xinicial,(int) yinicial,(int) xfinal,(int) yfinal);        
+                double yinicial = 600 - (vTiempo1[i] * escalaY);      
                 g1.drawOval((int) xinicial, (int) (yinicial + 1), 0, 0);
                 if ((i == 0) || (i % salto == 0) || (i == vTiempo1.length - 2)) {
+                    g1.setColor(Color.BLACK);
                     g1.drawString(vTiempo1[i] + "", 90, (int) (600 - (vTiempo1[i] * escalaY)));
                 }
             }
         }
-        Graphics g2 = getGraphics();
         g1.setColor(Color.RED);
 
     }
