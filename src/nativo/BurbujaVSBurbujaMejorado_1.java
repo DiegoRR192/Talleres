@@ -7,6 +7,7 @@ package nativo;
 
 import java.applet.Applet;
 import java.awt.*;
+import java.util.Locale;
 
 import javax.swing.*;
 
@@ -22,6 +23,7 @@ public class BurbujaVSBurbujaMejorado_1 extends Applet {
 
     int numeroDatos;
     int[] datos;
+    long[] tiempos;
     JTextField datosJT;
     Retorno datosTiempos;
 
@@ -53,15 +55,15 @@ public class BurbujaVSBurbujaMejorado_1 extends Applet {
         for (int i = 1, j = 850; i <= 14; i++, j = j - 50) {
             g.drawString(numeroDatos / i + "", j, 520);
         }
-        
+
         // couting sourt - graficando
-        datosTiempos = ejecucionCouting();
-        dibujaFuncion1(datosTiempos.getDatos(), datosTiempos.getTiempos());
-        
+       // datosTiempos = ejecucionCouting();
+       // dibujaFuncion1(datosTiempos.getDatos(), datosTiempos.getTiempos());
+
         //quicksort - graficando
         datosTiempos = ejecucionQuick();
         dibujaFuncion1(datosTiempos.getDatos(), datosTiempos.getTiempos());
-        
+         
         //Acomodar titulos del numero de datos en el eje Y
         g.setColor(Color.BLACK);
         g.setFont(new Font("Tahoma", Font.BOLD, 10));
@@ -74,31 +76,37 @@ public class BurbujaVSBurbujaMejorado_1 extends Applet {
 
     public void dibujaFuncion1(int[] vPrincipal1, long[] vTiempo1) {
         Graphics g = getGraphics();
-        //dibujaEjes(g, datos);
         Graphics g1 = getGraphics();
         g1.setColor(Color.RED);
-        long escalaTamanopulso = 1000000;
-        // int escalaTamanopulso = (int) vTiempo1[vTiempo1.length - 3];
-        double escalaX = 1;
-        double escalaY = 1;
+        double escalaX = 1.2;
+        long escalaTamanopulso = 0;
+
+        if (vTiempo1.length < 2000) {
+            escalaTamanopulso = 10000000;
+        } else {
+            escalaTamanopulso = 1000;
+            escalaX = 0.5;
+        }
+
+        //int escalaTamanopulso = (int) vTiempo1[vTiempo1.length - 3];
+        double escalaY = 0.2;
         for (int i = 0; i < vPrincipal1.length - 1; i++) {
             if (vTiempo1[i] == 0) {
             } else {
                 double xinicial = 200 + vPrincipal1[i] * escalaX;
                 double xfinal = 200 + vPrincipal1[i + 1] * escalaX;
-                //        double yinicial = 500 - vTiempo1[i] * escalaY;
-                //        double yfinal = 500 - vTiempo1[i + 1] * escalaY;
+                // double yinicial = 500 - vTiempo1[i] * escalaY;
+                // double yfinal = 500 - vTiempo1[i + 1] * escalaY;
 
-                long yinicial = ((vTiempo1[i] / escalaTamanopulso) * -1) + (500 - (i / 4));
-                long yfinal = ((vTiempo1[i + 1] / escalaTamanopulso) * -1) + (500 - (i / 4));
-                g1.drawOval((int) xinicial, (int) yinicial, 0, 0);
-                g1.drawOval((int) xfinal, (int) yfinal, 0, 0);
-                //  g1.drawLine((int) xinicial,(int) yinicial,(int) xfinal,(int) yfinal);        // drawOval(x,y,ancho,alto)
+                long yinicial = (((int) vTiempo1[i] / escalaTamanopulso) * -1) + (500 - (i / 4));
+                long yfinal = (((int) vTiempo1[i + 1] / escalaTamanopulso) * -1) + (500 - (i / 4));
+                // g1.drawOval((int) xinicial, (int) yinicial, 0, 0);
+                // g1.drawOval((int) xfinal, (int) yfinal, 0, 0);
+                g1.drawLine((int) xinicial, (int) yinicial, (int) xfinal, (int) yfinal);        // drawOval(x,y,ancho,alto)
             }
         }
         Graphics g2 = getGraphics();
         g1.setColor(Color.RED);
-
     }
 
     public Retorno ejecucionCouting() {
@@ -130,6 +138,7 @@ public class BurbujaVSBurbujaMejorado_1 extends Applet {
 
         //llenar datosJT
         datos = informacion.rellenarDatos(numeroDatos);
+        quick.asignarTamnio(datos.length);
         getAppletContext().showStatus("Datos creados");
 
         // organizar los datosJT anteriores

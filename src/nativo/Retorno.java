@@ -5,6 +5,8 @@
  */
 package nativo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author CARITO
@@ -47,5 +49,26 @@ public class Retorno {
         }
         return datos;
     }
+    
+    public long[] rellenarDatosLista(int tamaño) {
+        long datos[] = new long[tamaño];
 
+        for (int i = 0; i < tamaño; i++) {
+            long x = (long) (Math.random() * 499 + 1);
+            datos[i] = x;
+        }
+        return datos;
+    }
+
+    public long[] convertirArrayAList(ArrayList array){
+        long resultado[] = new long[array.size()];
+        int i;
+        
+        for( i = 0; i < array.size() ;  i++){
+            resultado[i] = (long) array.get(i);
+            i++;            
+        }
+        
+        return resultado;
+    }
 }

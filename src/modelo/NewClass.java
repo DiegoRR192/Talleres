@@ -21,28 +21,33 @@ public class NewClass {
         nativo.QuickSort quick = new QuickSort();
         nativo.CoutingSort couting = new CoutingSort();
         nativo.escrituraArchivo escribo = new escrituraArchivo();
-        int datos[] = new int[50000];
+        int datos[] = new int[5000];
+        long lista[] = new long[5000];
         Retorno datosTiempos;
 
-        for (int i = 0; i < 50000; i++) {
+        for (int i = 0; i < 5000; i++) {
             int x = (int) (Math.random() * 299 + 1);
             datos[i] = x;
         }
+        int dato[] = datos;
         System.out.println("Datos llenos");
-
-        /*datosTiempos = quick.quicksort(datos, 0, datos.length - 1);
+        
+        quick.asignarTamnio(datos.length);
+        
+        datosTiempos = quick.quicksort(datos, 0, datos.length - 1);
 
         for (int i = 0; i < datosTiempos.getDatos().length; i++) {
-            System.out.println(datosTiempos.getDatos()[i] + " - " + datosTiempos.getTiempos()[i]);
-        }*/
-        
-        datosTiempos = couting.countingSort(datos);
-        
+            System.out.println(datosTiempos.getDatos()[i] + " - " + datosTiempos.getTiempos()[i] );
+        }
+
+        //prueba con coutingSort en Main
+      /*  datosTiempos = couting.countingSort(dato);
+
         for (int i = 0; i < datosTiempos.getDatos().length; i++) {
             System.out.println(datosTiempos.getDatos()[i] + " - " + datosTiempos.getTiempos()[i]);
         }
-        
-        /*        System.out.println(datosTiempos.getTiempos().length);
+*/
+       /* System.out.println(datosTiempos.getTiempos().length);
         escribo.escribirArchivo(datosTiempos.getTiempos(), datosTiempos.getDatos(), "pruebaCouting");
 
         ArrayList resultado = new ArrayList(datosTiempos.getTiempos().length);
@@ -53,6 +58,6 @@ public class NewClass {
                 System.out.println("- " + datosTiempos.getTiempos()[i]);
             }
         }
-        System.out.println("tamaño " + resultado.size());
-         */    }
+        System.out.println("tamaño " + resultado.size());*/
+    }
 }
