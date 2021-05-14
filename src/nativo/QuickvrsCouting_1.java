@@ -69,6 +69,8 @@ public class QuickvrsCouting_1 extends Applet {
         double escalaY = (double) 500 / timeMax;
         escala_Y = escalaY;
         int salto = vTiempo1.length / 5;
+        long salto2 = vTiempo1[0]/3;        
+        long salto3 = salto2;        
         for (int i = 0; i < vPrincipal1.length - 1; i++) {
             g1.setColor(Color.RED);
             if (vTiempo1[i] == 0) {
@@ -79,6 +81,13 @@ public class QuickvrsCouting_1 extends Applet {
                 if ((i == 0) || (i % salto == 0) || (i == vTiempo1.length - 2)) {
                     g1.setColor(Color.BLACK);
                     g1.drawString(vTiempo1[i] + "", 90, (int) (600 - (vTiempo1[i] * escalaY)));
+                }
+                if(i==0){
+                    g1.drawString(salto3 + "", 90, (int) (600 - (salto3 * escalaY)));
+                    salto3=salto3+salto2;
+                    g1.drawString(salto3 + "", 90, (int) (600 - (salto3 * escalaY)));
+                    salto3=salto3+salto2;
+                    g1.drawString(salto3 + "", 90, (int) (600 - (salto3 * escalaY)));
                 }
             }
         }
@@ -99,7 +108,7 @@ public class QuickvrsCouting_1 extends Applet {
                 double xinicial = 200 + (i * escalaX);
                 double yinicial = 500 - (vTiempo1[i] * escala_Y);
                 g1.drawOval((int) xinicial, (int) (yinicial + 1), 3, 3);
-                if ((i == 0) || (i % salto == 0) || (i == vTiempo1.length - 2)) {
+                if ((i == vTiempo1.length - 2)) {
                     g1.setColor(Color.BLACK);
                     g1.drawString(vTiempo1[i] + "", 90, (int) (500 - (vTiempo1[i] * escala_Y)));
                 }
