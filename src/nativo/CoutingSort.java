@@ -19,7 +19,7 @@ public class CoutingSort {
         long ini, fin = 0;
         int[] output = new int[size + 1];
         Retorno respuesta;
-        ini = System.nanoTime() / 1000;
+        ini = System.nanoTime();
         long listaTiempos[] = new long[size];
 
         // Find the largest element of the array
@@ -55,7 +55,7 @@ public class CoutingSort {
 
         // Copy the sorted elements into original array
         for (int i = 0; i < size; i++) {
-            fin = (System.nanoTime() - ini) / 1000;
+            fin = (System.nanoTime() - ini);
             listaTiempos[i] = fin;
             array[i] = output[i];
         }
