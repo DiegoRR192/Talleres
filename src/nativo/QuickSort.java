@@ -56,7 +56,7 @@ public class QuickSort {
                 arreglo[j] = temp;
                 i++;
                 j--;
-                fin = System.nanoTime() - ini;
+                fin = System.nanoTime()- ini;
                 this.tiempos[i] = fin;
             }
         } while (i <= j);
