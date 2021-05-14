@@ -49,9 +49,9 @@ public class QuickvrsCouting_1 extends Applet {
         //Acomodar titulos del numero de datos en el eje X
         g.setColor(Color.BLACK);
         g.setFont(new Font("Tahoma", Font.BOLD, 10));
-        int div = numeroDatos/14;
-        for (int i = numeroDatos, j = 850, k=1; k <= 14 ; k++, i = i - div, j = j - 50) {
-            g.drawString( i + "", j, 520);
+        int div = numeroDatos / 14;
+        for (int i = numeroDatos, j = 875, k = 1; k <= 14; k++, i = i - div, j = j - 50) {
+            g.drawString(i + "", j, 520);
         }
         // couting sourt - graficando
         datosTiempos1 = ejecucionCouting();
@@ -81,8 +81,8 @@ public class QuickvrsCouting_1 extends Applet {
         double escalaY = (double) 500 / timeMax;
         escala_Y = escalaY;
         int salto = vTiempo1.length / 5;
-        long salto2 = vTiempo1[0]/3;        
-        long salto3 = salto2;        
+        long salto2 = vTiempo1[0] / 3;
+        long salto3 = salto2;
         for (int i = 0; i < vPrincipal1.length - 1; i++) {
             g1.setColor(Color.RED);
             if (vTiempo1[i] != 0) {
@@ -93,13 +93,13 @@ public class QuickvrsCouting_1 extends Applet {
                     g1.setColor(Color.BLACK);
                     g1.drawString(vTiempo1[i] + "", 90, (int) (600 - (vTiempo1[i] * escalaY)));
                 }
-                if(i==0){
+                /*if(i==0){
                     g1.drawString(salto3 + "", 90, (int) (600 - (salto3 * escalaY)));
                     salto3=salto3+salto2;
                     g1.drawString(salto3 + "", 90, (int) (600 - (salto3 * escalaY)));
                     salto3=salto3+salto2;
                     g1.drawString(salto3 + "", 90, (int) (600 - (salto3 * escalaY)));
-                }
+                }*/
             }
         }
     }
@@ -107,20 +107,25 @@ public class QuickvrsCouting_1 extends Applet {
     public void dibujaFuncion(int[] vPrincipal1, long[] vTiempo1) {
         Graphics g1 = getGraphics();
         int tam = vPrincipal1.length;
-        int timeMax = 0;
         double escalaX = (double) 700 / tam;
 
-        int salto = vTiempo1.length / 5;
         for (int i = 0; i < vPrincipal1.length - 1; i++) {
             g1.setColor(Color.BLUE);
             if (vTiempo1[i] != 0) {
                 double xinicial = 200 + (i * escalaX);
                 double yinicial = 497 - (vTiempo1[i] * escala_Y);
                 g1.drawOval((int) xinicial, (int) (yinicial + 1), 3, 3);
-                if ((i == vTiempo1.length - 2)) {
-                    g1.setColor(Color.BLACK);
-                    g1.drawString(vTiempo1[i] + "", 90, (int) (500 - (vTiempo1[i] * escala_Y)));
+            }
+            if (i == 0) {
+                long temp = 0;
+                for (int j = 0; j < vTiempo1.length - 1; j++) {
+                    if (temp < vTiempo1[j]) {
+                        temp = vTiempo1[j];
+                    }
                 }
+                g1.setColor(Color.BLACK);
+                g1.drawString(temp + "", 90, (int) (500 - (temp * escala_Y)));
+                System.out.println(temp);
             }
         }
     }
